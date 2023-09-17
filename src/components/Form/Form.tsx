@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
 import React from 'react';
-import { FormContainer, useForm, ValidationMode } from 'react-hook-form-mui';
+import { FormContainer, ValidationMode } from 'react-hook-form-mui';
 
-// import DevToolForm from './components/DevToolForm';
+import DevToolForm from './components/DevToolForm';
 
 export type DefaultValuesType = Record<string, string | number | object>;
 
@@ -15,25 +15,12 @@ interface FormProps<T = DefaultValuesType> {
   mode?: keyof ValidationMode;
 }
 
-export default function Form({
-  children,
-  id,
-  handleSubmit,
-  handleError,
-  defaultValues,
-  mode = 'onChange',
-  ...rest
-}: FormProps) {
-  // const methods = useForm({
-  //   mode,
-  //   defaultValues,
-  // });
-
+export default function Form({ children, handleSubmit, handleError, defaultValues }: FormProps) {
   return (
     <Box>
-      <FormContainer onSuccess={handleSubmit} onError={handleError}>
+      <FormContainer onSuccess={handleSubmit} onError={handleError} defaultValues={defaultValues}>
         {children}
-        {/*<DevToolForm control={methods.control} />*/}
+        {/*<DevToolForm />*/}
       </FormContainer>
     </Box>
   );
