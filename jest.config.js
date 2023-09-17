@@ -12,7 +12,6 @@ const customJestConfig = {
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
   },
-  collectCoverage: true,
   collectCoverageFrom: ['src/**/*.[jt]s?(x)', '!src/**/*.stories.[jt]s?(x)'],
   coveragePathIgnorePatterns: ['src/core/msw'],
   coverageThreshold: {
