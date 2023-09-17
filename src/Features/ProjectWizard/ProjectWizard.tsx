@@ -44,7 +44,7 @@ export default function ProjectWizard() {
     <Grid container>
       <WizardSteps steps={steps} activeStep={activeStep} handleReset={handleReset} />
 
-      <Form handleSubmit={createProject}>
+      <Form handleSubmit={createProject} defaultValues={{ teams: ['Default Team'] }}>
         <WizardStepEntry
           steps={steps}
           activeStep={activeStep}
