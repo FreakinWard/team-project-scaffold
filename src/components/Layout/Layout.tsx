@@ -1,4 +1,5 @@
-import styles from '../../../styles/Home.module.css';
+import { Container, CssBaseline } from '@mui/material';
+
 import Footer from './Footer';
 import Header from './Header';
 
@@ -8,10 +9,15 @@ interface Props {
 
 export default function Layout({ children }: Props) {
   return (
-    <main className={styles.main}>
-      <Header />
-      {children}
-      <Footer />
-    </main>
+    <>
+      <CssBaseline />
+      <Container>
+        <main>
+          <Header />
+          {children}
+          <Footer />
+        </main>
+      </Container>
+    </>
   );
 }
