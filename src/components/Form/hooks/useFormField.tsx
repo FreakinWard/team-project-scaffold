@@ -1,4 +1,4 @@
-import { useController, useFormContext } from 'react-hook-form';
+import { useController, useFormContext } from 'react-hook-form-mui';
 
 export default function useFormField(name: string, rules = {}) {
   const { control, resetField: resetFormField } = useFormContext();
