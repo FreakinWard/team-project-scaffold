@@ -1,4 +1,4 @@
-import { Box, Stack } from '@mui/material';
+import { Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 import useFormField from './hooks/useFormField';
@@ -14,7 +14,7 @@ export default function FormLabelField({ name, label, ...rest }) {
       {field.value.map((item, index) => (
         <Stack key={index} direction="row" alignItems="center" gap={4} {...rest}>
           <br />
-          <Typography variant="body1">{item}</Typography>
+          <Typography variant="body1">{item.name}</Typography>
         </Stack>
       ))}
     </>

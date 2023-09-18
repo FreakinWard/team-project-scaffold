@@ -8,7 +8,7 @@ export default function Summary() {
     <Paper sx={{ padding: 2, marginBottom: 2, width: '250px' }}>
       <FormLabelField name="organizationName" label="Organization Name" />
       <FormLabelArrayField name="teams" label="Team Name" />
-      <FormLabelField name="projectName" label="Project Name" />
+      <FormLabelArrayField name="projects" label="Project Name" />
     </Paper>
   );
 }

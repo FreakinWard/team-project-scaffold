@@ -1,5 +1,5 @@
-import { FormTextField } from '../../../../components/Form';
+import { FormMultiFields } from '../../../../components/Form';
 
 export default function Projects() {
-  return <FormTextField name="projectName" label="Project Name" autoFocus />;
+  return <FormMultiFields name="projects" label="Project Name" />;
 }

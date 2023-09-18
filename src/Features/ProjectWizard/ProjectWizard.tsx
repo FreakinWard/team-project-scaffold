@@ -29,6 +29,11 @@ const steps = [
   },
 ];
 
+const initialState = {
+  teams: [{ name: 'Default Team' }],
+  projects: [{ name: 'Default Project' }],
+};
+
 export default function ProjectWizard() {
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -43,7 +48,7 @@ export default function ProjectWizard() {
     <Grid container>
       <WizardSteps steps={steps} activeStep={activeStep} handleReset={handleReset} />
 
-      <Form handleSubmit={createProject} defaultValues={{ teams: [{ name: 'Default Team' }] }}>
+      <Form handleSubmit={createProject} defaultValues={initialState}>
         <WizardStepEntry
           steps={steps}
           activeStep={activeStep}
