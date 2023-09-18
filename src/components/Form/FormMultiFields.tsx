@@ -10,19 +10,24 @@ import { FormTextField } from '../Form';
 import useFormFieldArray from './hooks/useFormFieldArray';
 
 export default function FormMultiFields({ name, label }) {
-  const { fields, append, remove } = useFormFieldArray<string[]>(name);
+  const { fields, append, remove } = useFormFieldArray(name);
 
   const lastItemHasValue = useMemo(() => {
     const lastIndex = fields.length - 1;
 
-    return Boolean(fields[lastIndex]);
+    // console.log('test', name, lastItemHasValue, fields[lastIndex]);
+
+    // @ts-ignore
+    return Boolean(fields[lastIndex].name);
   }, [fields]);
+
+  // console.log('test', fields);
 
   return (
     <Box sx={{ width: 250 }}>
       {fields?.map((field, index) => (
-        <Stack key={index} direction="row">
-          <FormTextField name={`${name}.${index}`} label={label} autoFocus />
+        <Stack key={field.id} direction="row">
+          <FormTextField name={`${name}.${index}.name`} label={label} autoFocus />
           <IconButton disabled={index === 0} onClick={() => remove(index)}>
             <DeleteIcon />
           </IconButton>
