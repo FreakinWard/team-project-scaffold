@@ -2,8 +2,7 @@ import { Grid } from '@mui/material';
 import Form from 'components/Form';
 import * as React from 'react';
 
-import { Organization, Projects, Teams } from './components/Steps';
-import CreateProject from './components/Steps/CreateProject';
+import { Organization, Projects, Summary, Teams } from './components/Steps';
 import WizardStepEntry from './components/WizardStepEntry';
 import WizardSteps from './components/WizardSteps';
 
@@ -26,7 +25,7 @@ const steps = [
   {
     label: 'Create',
     description: `Confirm and create`,
-    component: CreateProject,
+    component: Summary,
   },
 ];
 
