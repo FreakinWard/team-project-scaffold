@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import Form from 'components/Form';
+import Box from '@mui/material/Box';
 import * as React from 'react';
 
 import { Organization, Projects, Summary, Teams } from './components/Steps';
@@ -29,11 +29,6 @@ const steps = [
   },
 ];
 
-const initialState = {
-  teams: [{ name: 'Default Team' }],
-  projects: [{ name: 'Default Project' }],
-};
-
 export default function ProjectWizard() {
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -41,21 +36,18 @@ export default function ProjectWizard() {
   const handleBack = () => setActiveStep(prevActiveStep => prevActiveStep - 1);
   const handleReset = () => setActiveStep(0);
 
-  // eslint-disable-next-line no-console
-  const createProject = formValues => console.log('test', formValues);
-
   return (
-    <Grid container>
-      <WizardSteps steps={steps} activeStep={activeStep} handleReset={handleReset} />
+    <Box sx={{ flexGrow: 1, height: '100%' }}>
+      <Grid container spacing={2}>
+        <WizardSteps steps={steps} activeStep={activeStep} handleReset={handleReset} />
 
-      <Form handleSubmit={createProject} defaultValues={initialState}>
         <WizardStepEntry
           steps={steps}
           activeStep={activeStep}
           handleNext={handleNext}
           handleBack={handleBack}
         />
-      </Form>
-    </Grid>
+      </Grid>
+    </Box>
   );
 }

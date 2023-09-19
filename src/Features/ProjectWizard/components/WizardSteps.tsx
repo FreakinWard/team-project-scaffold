@@ -1,5 +1,4 @@
 import { Grid } from '@mui/material';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Step from '@mui/material/Step';
@@ -8,10 +7,12 @@ import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
 import Typography from '@mui/material/Typography';
 
+import Item from '../../../components/Grid';
+
 export default function WizardSteps({ steps, activeStep, handleReset }) {
   return (
-    <Grid item xs={6}>
-      <Box sx={{ maxWidth: 400 }}>
+    <Grid item xs={4}>
+      <Item>
         <Stepper activeStep={activeStep} orientation="vertical">
           {steps.map((step, index) => (
             <Step key={step.label}>
@@ -34,7 +35,7 @@ export default function WizardSteps({ steps, activeStep, handleReset }) {
             </Button>
           </Paper>
         )}
-      </Box>
+      </Item>
     </Grid>
   );
 }
