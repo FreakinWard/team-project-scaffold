@@ -9,7 +9,7 @@ import { useMemo } from 'react';
 import { FormTextField } from '../Form';
 import useFormFieldArray from './hooks/useFormFieldArray';
 
-export default function FormMultiFields({ name, label }) {
+export default function FormMultiFields({ name, label, ...rest }) {
   const { fields, append, remove } = useFormFieldArray(name);
 
   const lastItemHasValue = useMemo(() => {
@@ -27,7 +27,7 @@ export default function FormMultiFields({ name, label }) {
     <Box sx={{ width: 250 }}>
       {fields?.map((field, index) => (
         <Stack key={field.id} direction="row">
-          <FormTextField name={`${name}.${index}.name`} label={label} autoFocus />
+          <FormTextField {...rest} name={`${name}.${index}.name`} label={label} autoFocus />
           <IconButton disabled={index === 0} onClick={() => remove(index)}>
             <DeleteIcon />
           </IconButton>

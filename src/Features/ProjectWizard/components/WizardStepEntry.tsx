@@ -12,9 +12,14 @@ const initialState = {
 export default function WizardStepEntry({ steps, activeStep, handleNext, handleBack }) {
   const isFirstStep = activeStep === 0;
   const isLastStep = activeStep === steps.length - 1;
+  const isComplete = activeStep === steps.length;
 
-  // eslint-disable-next-line no-console
-  const createProject = formValues => console.log('test', formValues);
+  const handleSubmit = formValues => {
+    // eslint-disable-next-line no-console
+    console.log('test', { formValues });
+
+    handleNext();
+  };
 
   const Component = steps[activeStep]?.component;
 
@@ -22,30 +27,34 @@ export default function WizardStepEntry({ steps, activeStep, handleNext, handleB
     <>
       <Grid item xs={8}>
         <Item>
-          <Form handleSubmit={createProject} defaultValues={initialState}>
+          <Form handleSubmit={handleSubmit} defaultValues={initialState}>
             {Component && <Component />}
+            {!isComplete && (
+              <Stack direction="row" sx={{ width: 250 }}>
+                {!isLastStep ? (
+                  <Button type="submit" variant="contained">
+                    Continue
+                  </Button>
+                ) : null}
+
+                {isLastStep ? (
+                  <Button type="submit" variant="contained">
+                    Create
+                  </Button>
+                ) : null}
+
+                <Button disabled={isFirstStep} onClick={handleBack}>
+                  Back
+                </Button>
+              </Stack>
+            )}
+            {isComplete && <div>Project created! 🚀</div>}
           </Form>
         </Item>
       </Grid>
       <Grid item xs={4} />
       <Grid item xs={4}>
-        <Stack direction="row" sx={{ width: 250 }}>
-          {!isLastStep ? (
-            <Button variant="contained" onClick={handleNext}>
-              Continue
-            </Button>
-          ) : null}
-
-          {isLastStep ? (
-            <Button type="submit" variant="contained">
-              Create
-            </Button>
-          ) : null}
-
-          <Button disabled={isFirstStep} onClick={handleBack}>
-            Back
-          </Button>
-        </Stack>
+        OG Buttons
       </Grid>
     </>
   );

@@ -20,7 +20,7 @@ export default function Form({ children, handleSubmit, handleError, defaultValue
     <Box>
       <FormContainer onSuccess={handleSubmit} onError={handleError} defaultValues={defaultValues}>
         {children}
-        {/*<DevToolForm />*/}
+        <DevToolForm />
       </FormContainer>
     </Box>
   );
