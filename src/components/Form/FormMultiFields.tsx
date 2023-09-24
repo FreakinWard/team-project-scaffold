@@ -1,42 +1,39 @@
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Stack } from '@mui/material';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import { useMemo } from 'react';
+import React, { Children, cloneElement } from 'react';
 
 import { FormTextField } from '../Form';
 import useFormFieldArray from './hooks/useFormFieldArray';
 
-export default function FormMultiFields({ name, label, ...rest }) {
+export default function FormMultiFields({ name, label, children, ...rest }) {
   const { fields, append, remove } = useFormFieldArray(name);
 
-  const lastItemHasValue = useMemo(() => {
-    const lastIndex = fields.length - 1;
-
-    // console.log('test', name, lastItemHasValue, fields[lastIndex]);
-
-    // @ts-ignore
-    return Boolean(fields[lastIndex].name);
-  }, [fields]);
-
-  // console.log('test', fields);
+  const renderChildren = index => {
+    return Children.map(children, child => {
+      return cloneElement(child, {
+        name: `${name}.${index}.teamName`,
+      });
+    });
+  };
 
   return (
-    <Box sx={{ width: 250 }}>
+    <>
       {fields?.map((field, index) => (
         <Stack key={field.id} direction="row">
           <FormTextField {...rest} name={`${name}.${index}.name`} label={label} autoFocus />
-          <IconButton disabled={index === 0} onClick={() => remove(index)}>
+          {renderChildren(index)}
+          <IconButton disabled={index === 0} onClick={() => remove(index)} tabIndex={-1}>
             <DeleteIcon />
           </IconButton>
         </Stack>
       ))}
 
-      <Button startIcon={<AddIcon />} onClick={() => append(null)} disabled={!lastItemHasValue}>
+      <Button startIcon={<AddIcon />} onClick={() => append(null)}>
         Add
       </Button>
-    </Box>
+    </>
   );
 }

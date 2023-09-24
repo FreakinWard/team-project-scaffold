@@ -14,7 +14,12 @@ export default function FormLabelField({ name, label, ...rest }) {
       {field.value.map((item, index) => (
         <Stack key={index} direction="row" alignItems="center" gap={4} {...rest}>
           <br />
-          <Typography variant="body1">{item.name}</Typography>
+
+          {item.teamName ? (
+            <Typography variant="body1">{`${item.name} - ${item.teamName}`}</Typography>
+          ) : (
+            <Typography variant="body1">{`${item.name}`}</Typography>
+          )}
         </Stack>
       ))}
     </>
